@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            id="architectide.editors.WbsEditor"
+            name="WBS Editor"
+            icon="icons/sample.png"
+            extensions="wbs"
+            class="architectide.editors.WbsEditor"
+            contributorClass="architectide.editors.WbsEditorContributor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            name="WBS Project wizard"
+            id="architect-ide">
+      </category>
+      <wizard
+            id="architectide.wizards.WbsNewWizard"
+            name="WBS project file"
+            icon="icons/sample.png"
+            class="architectide.wizards.WbsNewWizard"
+            category="architect-ide">
+      </wizard>
+   </extension>
+
+</plugin>
