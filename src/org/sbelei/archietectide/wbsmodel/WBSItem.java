@@ -2,6 +2,13 @@ package org.sbelei.archietectide.wbsmodel;
 
 import java.util.LinkedList;
 
+/**
+ * 
+ * @author Serhii Belei
+ * 
+ * @license
+ *
+ */
 public class WBSItem {
 
 	public int level;

@@ -7,7 +7,7 @@
 
 1. Shall I go with maven build tool or gradle build tool? (Maven)
 
-2. 
+2. What license shall I use? (Apache 2.0)
 
 
 == 1. Shall I go with maven build tool or gradle build tool?
@@ -47,3 +47,9 @@ Latest version:  1.7.0
 Last update: 31 October 2018
 
 Licence: Apache 2.0
+
+== 2. What license shall I use?
+
+After investigation and reading descussion at: https://habr.com/post/243091/
+
+I plan to use Apache 2.0 license 
