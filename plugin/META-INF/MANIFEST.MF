@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Architect-ide
 Bundle-SymbolicName: architect-ide;singleton:=true
-Bundle-Version: 1.0.0.snapshot
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: architect_ide.Activator
 Bundle-Vendor: org.sbelei
 Require-Bundle: org.eclipse.ui,
