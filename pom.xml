@@ -1,104 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.sbelei.architectide</groupId>
-	<artifactId>architect-ide-parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>architect-ide-parent</name>
+    <groupId>org.sbelei.architectide</groupId>
+    <artifactId>architect-ide-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>architect-ide-parent</name>
 
-	<developers>
-		<developer>
-			<id>crc83</id>
-			<name>Serhii Belei</name>
-			<email>Sergiy.Beley@gmail.com</email>
-			<roles>
-				<role>Lead Developer</role>
-			</roles>
-			<timezone>+2</timezone>
-		</developer>
-	</developers>
-	<prerequisites>
-		<maven>3.0</maven>
-	</prerequisites>
+    <developers>
+        <developer>
+            <id>crc83</id>
+            <name>Serhii Belei</name>
+            <email>Sergiy.Beley@gmail.com</email>
+            <roles>
+                <role>Lead Developer</role>
+            </roles>
+            <timezone>+2</timezone>
+        </developer>
+    </developers>
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
 
-	<properties>
-		<tycho-version>1.2.0</tycho-version>
-		<eclipse-version>photon</eclipse-version>
+    <properties>
+        <tycho-version>1.2.0</tycho-version>
+        <eclipse-version>photon</eclipse-version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- PROJECT SETTINGS -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
 
-		<!-- PROJECT SETTINGS -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
 
+    <modules>
+        <module>plugin</module>
+        <!-- module>feature</module> <module>site</module -->
+    </modules>
 
-	<modules>
-		<module>plugin</module>
-		<!-- module>feature</module>
-		<module>site</module -->
-	</modules>
+    <repositories>
+        <repository>
+            <id>${eclipse-version}</id>
+            <layout>p2</layout>
+            <url>http://download.eclipse.org/releases/${eclipse-version}</url>
+        </repository>
 
-	<repositories>
-		<repository>
-			<id>${eclipse-version}</id>
-			<layout>p2</layout>
-			<url>http://download.eclipse.org/releases/${eclipse-version}</url>
-		</repository>
-		 
-	</repositories>
+    </repositories>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-maven-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<extensions>true</extensions>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-compiler-plugin</artifactId>
-				<version>${tycho-version}</version>
-			</plugin>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho-version}</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-compiler-plugin</artifactId>
+                <version>${tycho-version}</version>
+            </plugin>
 
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>target-platform-configuration</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<environments>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>macosx</os>
-							<ws>cocoa</ws>
-							<arch>x86_64</arch>
-						</environment>
-					</environments>
-				</configuration>
-			</plugin>
-			
-		</plugins>
-	</build>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <environments>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86</arch>
+                        </environment>
+                        <environment>
+                            <os>linux</os>
+                            <ws>gtk</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86</arch>
+                        </environment>
+                        <environment>
+                            <os>win32</os>
+                            <ws>win32</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                        <environment>
+                            <os>macosx</os>
+                            <ws>cocoa</ws>
+                            <arch>x86_64</arch>
+                        </environment>
+                    </environments>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 </project>
