@@ -1,4 +1,4 @@
-[1] Analyze existing WBS approach   esitmate 10d min 2d max 20d   addressed R-01		//comment
+#| Analyze existing WBS approach   |esitmate 10d min 2d max 20d   addressed R-01		//comment
     [2] Prepare environment			estimate 4d   addressed R-01-01
     //underline comment
     [2] Define model				estimate 3d min 1d max 5d   addressed R-01-02
