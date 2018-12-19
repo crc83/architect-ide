@@ -2,7 +2,6 @@ parser grammar WbsgrammarParser;
 
 options {
     tokenVocab = WbsgrammarLexer;
-    superClass = WBSGrammar;
 }
 
 @header {
