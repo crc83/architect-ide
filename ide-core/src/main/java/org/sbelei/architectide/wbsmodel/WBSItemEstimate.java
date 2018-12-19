@@ -1,4 +1,4 @@
-package org.sbelei.archietectide.wbsmodel;
+package org.sbelei.architectide.wbsmodel;
 
 public class WBSItemEstimate {
 	
