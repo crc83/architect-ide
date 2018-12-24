@@ -1,33 +1,22 @@
 lexer grammar WbsgrammarLexer;
 
-// import WbsgrammarFragments;
-
 @header {
 
 }
 
-// -------------------------
-// Comments
-
-ITEM_START
-    : [#]+
-    ;
-
-COMMENTS
-    : //*.?\n
-    ;
-
-ESTIMATE
-    : 'estimate'*.?
-    ;
-
-ADDRESSED
-    : 'addressed'*.?
-    ;
-
-ITEM_DESCRIPTION
-    : '|'*.?'|'
-    ;
+ESTIMATE    : 'estimate'    ;
+ADDRESSED   : 'addressed'   ;
+DOT         : '.'           ;
+DSLASH      : '//'          ;
+PIPE        : '|'           ;
+INT : DIGIT+ ; // references the DIGIT helper rule
+ITEM_DESCRIPTION : PIPE CONTENT+ PIPE;
+COMMENT : DSLASH CONTENT+;
+fragment DIGIT : [0-9] ; // not a token by itself
+fragment LETTER: [A-Z,a-z];
+fragment WS_CHAR: [\t,' '];
+fragment CONTENT: DIGIT | LETTER | WS_CHAR;
+WS  :   WS_CHAR+;
 
 // -------------------------
 // Punctuation
