@@ -3,7 +3,6 @@ lexer grammar WbsgrammarLexer;
 @header {
 
 }
-
 ESTIMATE    : 'estimate'    ;
 ADDRESSED   : 'addressed'   ;
 DOT         : '.'           ;

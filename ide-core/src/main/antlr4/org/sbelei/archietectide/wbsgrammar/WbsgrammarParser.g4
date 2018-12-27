@@ -8,6 +8,14 @@ options {
 
 }
 
+wbs
+    : wbsItem+
+    ;
+
 wbsItem
-    : ITEM_START ITEM_DESCRIPTION ESTIMATE ADDRESSED COMMENTS
+    : wbsItemStart WS ITEM_DESCRIPTION WS ESTIMATE WS ADDRESSED WS COMMENT
+    ;
+
+wbsItemStart
+    : DOT+?
     ;
