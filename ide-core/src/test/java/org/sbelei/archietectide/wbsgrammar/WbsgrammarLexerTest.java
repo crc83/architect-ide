@@ -7,13 +7,22 @@ import java.util.Iterator;
 
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.Parser.TraceListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.atn.ATN;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.tree.ErrorNode;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
 import org.junit.jupiter.api.Test;
+import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsContext;
+import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemContext;
 
 public class WbsgrammarLexerTest {
 
@@ -66,5 +75,24 @@ public class WbsgrammarLexerTest {
            System.out.println( itea.next());
         };
 
+    }
+
+    @Test
+    void testGrammar() throws Exception {
+        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(WBS_ITEM_UNDER_TEST));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        WbsgrammarParser parser = new WbsgrammarParser(tokens);
+        parser.setTrace(true);
+        var listener = new WbsgrammarParserBaseListener() {
+            int errorCount =0 ;
+            public void visitErrorNode(ErrorNode node) {
+                errorCount  ++;
+                System.err.println(node.getText());
+            }
+        };
+        parser.addParseListener(listener);
+        WbsContext context = parser.wbs();
+        assertNotNull(context);
+        assertEquals(0, listener.errorCount);
     }
 }
