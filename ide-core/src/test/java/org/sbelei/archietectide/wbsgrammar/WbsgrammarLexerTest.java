@@ -22,11 +22,11 @@ public class WbsgrammarLexerTest {
 
     //This is what I expect to parse here
     private static final String WBS_ITEM_UNDER_TEST =
-            ". | Analyze 1 existing WBS approach   | estimate addressed //comment";
+            ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment";
 //    ". | Analyze 1 existing WBS approach   | estimate 10d min 2d max 20d   addressed R-01		//comment";
 
     @Test
-    void testLexterGoesFine() throws Exception {
+    void testLexter() throws Exception {
 
         WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(WBS_ITEM_UNDER_TEST));
 
@@ -80,14 +80,18 @@ public class WbsgrammarLexerTest {
         parser.setTrace(true);
         var listener = new WbsgrammarParserBaseListener() {
             int errorCount =0 ;
+
             public void visitErrorNode(ErrorNode node) {
                 errorCount ++;
-                System.err.println(node.getText());
+                System.err.println("|##|" + node.getText());
             }
         };
         parser.addParseListener(listener);
         WbsContext context = parser.wbs();
         assertNotNull(context);
         assertEquals(0, listener.errorCount);
+        for (int i=0; i<context.getChildCount(); i++) {
+            System.out.println("####" + context.getChild(i).toString());
+        }
     }
 }

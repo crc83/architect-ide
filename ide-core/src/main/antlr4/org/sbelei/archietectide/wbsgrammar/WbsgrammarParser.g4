@@ -13,9 +13,27 @@ wbs
     ;
 
 wbsItem
-    : wbsItemStart WS ITEM_DESCRIPTION WS ESTIMATE WS ADDRESSED WS COMMENT
+    : wbsItemStart ITEM_DESCRIPTION WS? wbsEstimate WS? wbsAddressed WS? COMMENT #item
+    | wbsItemStart ITEM_DESCRIPTION #unestimatedUnaddressedItem
     ;
 
 wbsItemStart
-    : DOT+?
+    : DOT+? WS?
+    ;
+
+wbsEstimate
+    : ESTIMATE WS INT EST_SCALE WS MIN WS INT EST_SCALE WS MAX WS INT EST_SCALE
+    ;
+
+wbsAddressed
+    : ADDRESSED wbsItemRef
+    | ADDRESSED wbsItemRefs
+    ;
+
+wbsItemRef
+    : WS REFERENCE
+    ;
+
+wbsItemRefs
+    : WS? LSQBRACE WS? (REFERENCE WS? COMA)+ WS? REFERENCE RSQBRACE
     ;
