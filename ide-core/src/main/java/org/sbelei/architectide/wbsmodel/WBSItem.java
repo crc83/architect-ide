@@ -21,10 +21,10 @@ public class WBSItem {
     //raw data is usefull for debug and investigation
     String raw;
 
-    //# First level item :0h:
-    public WBSItem(String item) {
+    public WBSItem(String itemDescription) {
         subItems = new LinkedList<>();
-        raw =  item;
+        //maybe it's necessary to remove starting and ending symbol
+        this.itemDescription =  itemDescription;
     }
 
     public void addSubItem(WBSItem item) {
@@ -33,6 +33,9 @@ public class WBSItem {
 
     @Override
     public String toString() {
-        return raw;
+        return "WBSItem [level=" + level + ", itemDescription=" + itemDescription + ", estimate=" + estimate
+                + ", relatedReqItem=" + relatedReqItem + ", comment=" + comment + "]";
     }
+
+
 }

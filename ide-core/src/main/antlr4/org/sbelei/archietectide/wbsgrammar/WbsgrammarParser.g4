@@ -12,22 +12,28 @@ wbs
     : wbsItem+
     ;
 
+//let's support only one level deeprer for start'
 wbsItem
-    : wbsItemStart ITEM_DESCRIPTION WS? wbsEstimate WS? wbsAddressed WS? COMMENT #item
-    | wbsItemStart ITEM_DESCRIPTION #unestimatedUnaddressedItem
+//    : wbsSubItemStart ITEM_DESCRIPTION WS? wbsEstimate? WS? wbsAddressed? WS? COMMENT? NL #subItem
+    : wbsItemStart ITEM_DESCRIPTION WS? wbsEstimate? WS? wbsAddressed? WS? COMMENT? NL #item
+    ;
+
+wbsSubItemStart
+    : DOT+ WS?
     ;
 
 wbsItemStart
-    : DOT+? WS?
+    : DOT WS?
     ;
 
 wbsEstimate
-    : ESTIMATE WS INT EST_SCALE WS MIN WS INT EST_SCALE WS MAX WS INT EST_SCALE
+    : ESTIMATE WS INT EST_SCALE WS MIN WS INT EST_SCALE WS MAX WS INT EST_SCALE #fullEstimate
+//    | ESTIMATE WS INT EST_SCALE #shortEstimate
     ;
 
 wbsAddressed
-    : ADDRESSED wbsItemRef
-    | ADDRESSED wbsItemRefs
+    : ADDRESSED wbsItemRef      #addressedOneItem
+    | ADDRESSED wbsItemRefs     #addressedItemList
     ;
 
 wbsItemRef
