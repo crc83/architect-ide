@@ -18,13 +18,23 @@ public class WBSItem {
     String comment;
     LinkedList<WBSItem> subItems;
 
-    //raw data is usefull for debug and investigation
-    String raw;
-
     public WBSItem(String itemDescription) {
         subItems = new LinkedList<>();
         //maybe it's necessary to remove starting and ending symbol
-        this.itemDescription =  itemDescription;
+        if (itemDescription != null
+            && itemDescription.length() >=2 ) { //leading and trailing pipe
+                this.itemDescription =  itemDescription.substring(1, itemDescription.length() -1).strip();
+        } else {
+            this.itemDescription = "";
+        }
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public WBSItemEstimate getEstimate() {
+        return estimate;
     }
 
     public void addSubItem(WBSItem item) {
@@ -35,6 +45,10 @@ public class WBSItem {
     public String toString() {
         return "WBSItem [level=" + level + ", itemDescription=" + itemDescription + ", estimate=" + estimate
                 + ", relatedReqItem=" + relatedReqItem + ", comment=" + comment + "]";
+    }
+
+    public int getLevel() {
+        return level;
     }
 
 

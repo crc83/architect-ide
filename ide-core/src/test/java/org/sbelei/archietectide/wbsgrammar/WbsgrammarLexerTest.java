@@ -2,7 +2,6 @@ package org.sbelei.archietectide.wbsgrammar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Iterator;
 import java.util.stream.Stream;
@@ -17,7 +16,6 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.tree.ErrorNode;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -25,6 +23,7 @@ import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsContext;
 
 public class WbsgrammarLexerTest {
 
+    @SuppressWarnings("unused")
     private static Stream<Arguments> createWbsItems() {
         return Stream.of(
 Arguments.of("1st level full estimate, multiple addressed",
@@ -107,20 +106,5 @@ Arguments.of("1st level with keywords inside item description",
         for (int i=0; i<context.getChildCount(); i++) {
             System.out.println("####" + context.getChild(i).toString());
         }
-    }
-
-    @Test
-    void testModelGeneration() {
-        String wbsItemUnderTest = ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment";
-        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(wbsItemUnderTest));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        WbsgrammarParser parser = new WbsgrammarParser(tokens);
-        parser.setTrace(true);
-        var listener = new WbsParserListener();
-        parser.addParseListener(listener);
-        WbsContext context = parser.wbs();
-        assertNotNull(context);
-
-        System.out.println(Arrays.toString(listener.items.toArray()));
     }
 }

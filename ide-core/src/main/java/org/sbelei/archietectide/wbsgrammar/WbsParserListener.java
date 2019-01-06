@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.ItemContext;
-import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemContext;
 import org.sbelei.architectide.wbsmodel.WBSItem;
 
 /**
