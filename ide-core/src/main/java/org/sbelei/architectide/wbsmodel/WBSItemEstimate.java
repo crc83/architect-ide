@@ -1,8 +1,10 @@
 package org.sbelei.architectide.wbsmodel;
 
+import static org.sbelei.archietectide.utils.WbsLogger.LOG;
+
 public class WBSItemEstimate {
 
-    //all in hours here
+    // all in hours here
     int min, avg, max;
 
     public WBSItemEstimate(String avg, String avgScale, String min, String minScale, String max, String maxScale) {
@@ -12,7 +14,12 @@ public class WBSItemEstimate {
     }
 
     private int convertToHours(String estimateString, String scale) {
-        int estimate = Integer.parseInt(estimateString);
+        int estimate = 0;
+        try {
+            estimate = Integer.parseInt(estimateString);
+        } catch (NumberFormatException nfe) {
+            LOG.logException("Estimate value is not a number", nfe);
+        }
         int multiplier = 8;
         switch (scale.toUpperCase()) {
         case "HOURS":
@@ -20,8 +27,28 @@ public class WBSItemEstimate {
         case "H":
             multiplier = 1;
             break;
+        case "DAYS":
+        case "D":
+        case "":
+            multiplier = 8;
+            break;
+        default :
+            LOG.logError("Estimate scale is not defined correctly, using 'days'");
         }
+
         return estimate * multiplier;
+    }
+
+    public int getAvg() {
+        return avg;
+    }
+
+    public int getMin() {
+        return min;
+    }
+
+    public int getMax() {
+        return max;
     }
 
     @Override
@@ -54,6 +81,6 @@ public class WBSItemEstimate {
 
     @Override
     public String toString() {
-        return "Estimate optimistic:"+min+"hrs expected:" + avg + "hrs pessimistic:"+ max + "hrs";
+        return "Estimate optimistic:" + min + "hrs expected:" + avg + "hrs pessimistic:" + max + "hrs";
     }
 }
