@@ -25,6 +25,6 @@ public class WbsModelLoaderTest {
         assertAll(
                 () -> assertEquals(0, actual.getLevel()),
                 () -> assertEquals("Analyze 1 existing WBS approach", actual.getItemDescription()),
-                () -> assertEquals(new WBSItemEstimate("5h", "1h", "20h"), actual.getEstimate()));
+                () -> assertEquals(new WBSItemEstimate("5", "h",  "1", "h", "20", "h"), actual.getEstimate()));
     }
 }

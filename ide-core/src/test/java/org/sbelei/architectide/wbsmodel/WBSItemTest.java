@@ -9,7 +9,8 @@ public class WBSItemTest {
 
     @Test
     void testItemDirectFlow() throws Exception {
-        WBSItem actual = new WBSItem("| Zero level item  |");
+        WBSItem actual = new WBSItem();
+        actual.setItemDescription("| Zero level item  |");
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("Zero level item", actual.itemDescription),
@@ -18,7 +19,8 @@ public class WBSItemTest {
 
     @Test
     void testItemTooShortDescription() throws Exception {
-        WBSItem actual = new WBSItem("A");
+        WBSItem actual = new WBSItem();
+        actual.setItemDescription("A");
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("", actual.itemDescription),
@@ -27,7 +29,8 @@ public class WBSItemTest {
 
     @Test
     void testItemNullInputOk() throws Exception {
-        WBSItem actual = new WBSItem(null);
+        WBSItem actual = new WBSItem();
+        actual.setItemDescription(null);
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("", actual.itemDescription),

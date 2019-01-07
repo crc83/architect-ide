@@ -11,9 +11,6 @@ DOT         : '.';
 LSQBRACE : '[';
 RSQBRACE : ']';
 COMA : ',';
-DAYS : [Dd][Aa][Ys][Ss] | [Dd] ;
-HRS  : [Hh][Oo][Uu][Rr][Ss] | [Hh][Rr][Ss] | [Hh] ;
-EST_SCALE : DAYS | HRS;
 NL : '\r'?'\n';
 fragment DSLASH      : '//'          ;
 fragment PIPE        : '|'           ;
@@ -27,6 +24,9 @@ REFERENCE : LETTER REFERENCE_CHAR+;
 COMMENT : DSLASH CONTENT_CHAR+;
 INT : DIGIT+ ;
 ITEM_DESCRIPTION : PIPE CONTENT_CHAR+ PIPE;
+fragment DAYS : [Dd][Aa][Ys][Ss] | [Dd] ;
+fragment HRS  : [Hh][Oo][Uu][Rr][Ss] | [Hh][Rr][Ss] | [Hh] ;
+EST_SCALE : DAYS | HRS;
 
 // -------------------------
 // Punctuation

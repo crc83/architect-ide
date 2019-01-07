@@ -2,6 +2,8 @@ package org.sbelei.architectide.wbsmodel;
 
 import java.util.LinkedList;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 /**
  *
  * @author Serhii Belei
@@ -18,14 +20,21 @@ public class WBSItem {
     String comment;
     LinkedList<WBSItem> subItems;
 
-    public WBSItem(String itemDescription) {
+    public WBSItem() {
         subItems = new LinkedList<>();
-        //maybe it's necessary to remove starting and ending symbol
+    }
+
+    /**
+     * It's necessary to remove starting and ending  PIPE symbol and spaces
+     * @param itemDescription i.e. "|  Some Text  |"
+     * @return "SomeText"
+     */
+    private String trimDescription(String itemDescription) {
         if (itemDescription != null
             && itemDescription.length() >=2 ) { //leading and trailing pipe
-                this.itemDescription =  itemDescription.substring(1, itemDescription.length() -1).strip();
+                return itemDescription.substring(1, itemDescription.length() -1).strip();
         } else {
-            this.itemDescription = "";
+            return "";
         }
     }
 
@@ -49,6 +58,14 @@ public class WBSItem {
 
     public int getLevel() {
         return level;
+    }
+
+    public void setItemDescription(String description) {
+        this.itemDescription = trimDescription(description);
+    }
+
+    public void setEstimate(WBSItemEstimate theEstimate) {
+        estimate =  theEstimate;
     }
 
 
