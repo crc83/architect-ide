@@ -16,7 +16,7 @@ public class WBSItem {
 
     public int level;
     String itemDescription;
-    WBSItemEstimate estimate;
+    WBSFullEstimate estimate;
     Map<String, ReqItem> addressReqItems;
     String comment;
     LinkedList<WBSItem> subItems;
@@ -24,6 +24,7 @@ public class WBSItem {
     public WBSItem() {
         subItems = new LinkedList<>();
         addressReqItems = new LinkedHashMap<>();
+        comment = "";
     }
 
     /**
@@ -34,7 +35,7 @@ public class WBSItem {
     private String trimDescription(String itemDescription) {
         if (itemDescription != null
             && itemDescription.length() >=2 ) { //leading and trailing pipe
-                return itemDescription.substring(1, itemDescription.length() -1).strip();
+                return itemDescription.substring(1, itemDescription.length() -1).trim();
         } else {
             return "";
         }
@@ -44,7 +45,7 @@ public class WBSItem {
         return itemDescription;
     }
 
-    public WBSItemEstimate getEstimate() {
+    public WBSFullEstimate getEstimate() {
         return estimate;
     }
 
@@ -66,7 +67,7 @@ public class WBSItem {
         this.itemDescription = trimDescription(description);
     }
 
-    public void setEstimate(WBSItemEstimate theEstimate) {
+    public void setEstimate(WBSFullEstimate theEstimate) {
         estimate =  theEstimate;
     }
 
@@ -86,7 +87,7 @@ public class WBSItem {
 
     private String trimComment(String comment) {
         if (comment != null && comment.length()>=2) {
-            return comment.substring(2, comment.length()).strip();
+            return comment.substring(2, comment.length()).trim();
         }
         return "";
     }
