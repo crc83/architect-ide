@@ -14,12 +14,7 @@ wbs
 
 //let's support only one level deeprer for start'
 wbsItem
-//    : wbsSubItemStart ITEM_DESCRIPTION WS? wbsEstimate? WS? wbsAddressed? WS? COMMENT? NL #subItem
-    : wbsItemStart ITEM_DESCRIPTION WS? wbsFullEstimate? WS? wbsAddressed? WS? COMMENT? NL #item
-    ;
-
-wbsSubItemStart
-    : DOT+ WS+?
+    : wbsItemStart ITEM_DESCRIPTION WS? wbsFullEstimate? WS? wbsAddressed? WS? wbsComment? NL
     ;
 
 wbsItemStart
@@ -46,6 +41,11 @@ wbsAddressed
     : ADDRESSED wbsItemRef      #addressedOneItem
     | ADDRESSED wbsItemRefs     #addressedItemList
     ;
+
+wbsComment
+    : COMMENT
+    ;
+
 
 wbsItemRef
     : WS REFERENCE

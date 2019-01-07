@@ -1,8 +1,9 @@
 package org.sbelei.architectide.wbsmodel;
 
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
-
-import org.antlr.v4.runtime.tree.TerminalNode;
+import java.util.Map;
 
 /**
  *
@@ -16,12 +17,13 @@ public class WBSItem {
     public int level;
     String itemDescription;
     WBSItemEstimate estimate;
-    String relatedReqItem;
+    Map<String, ReqItem> addressReqItems;
     String comment;
     LinkedList<WBSItem> subItems;
 
     public WBSItem() {
         subItems = new LinkedList<>();
+        addressReqItems = new LinkedHashMap<>();
     }
 
     /**
@@ -53,7 +55,7 @@ public class WBSItem {
     @Override
     public String toString() {
         return "WBSItem [level=" + level + ", itemDescription=" + itemDescription + ", estimate=" + estimate
-                + ", relatedReqItem=" + relatedReqItem + ", comment=" + comment + "]";
+                + ", address " + addressReqItems.size() + " count , comment=" + comment + "]";
     }
 
     public int getLevel() {
@@ -68,5 +70,28 @@ public class WBSItem {
         estimate =  theEstimate;
     }
 
+    public void insertAddressedItem(String itemCode) {
+        if (itemCode != null) {
+            addressReqItems.put(itemCode.trim(), null);
+        }
+    }
 
+    public Map<String, ReqItem> getAddressReqItems() {
+        return Collections.unmodifiableMap(addressReqItems);
+    }
+
+    public void setComment(String comment) {
+        this.comment = trimComment(comment);
+    }
+
+    private String trimComment(String comment) {
+        if (comment != null && comment.length()>=2) {
+            return comment.substring(2, comment.length()).strip();
+        }
+        return "";
+    }
+
+    public String getComment() {
+        return comment;
+    }
 }
