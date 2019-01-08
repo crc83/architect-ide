@@ -14,12 +14,12 @@ import java.util.Map;
  */
 public class WBSItem {
 
-    public int level;
-    String itemDescription;
-    WBSEstimate avg, min, max;
-    Map<String, ReqItem> addressReqItems;
-    String comment;
-    LinkedList<WBSItem> subItems;
+    private int level;
+    private String itemDescription;
+    private WBSEstimate avg, min, max;
+    private Map<String, ReqItem> addressReqItems;
+    private String comment;
+    private LinkedList<WBSItem> subItems;
 
     public WBSItem() {
         subItems = new LinkedList<>();
@@ -113,5 +113,9 @@ public class WBSItem {
             return 0;
         }
         return max.estimate;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

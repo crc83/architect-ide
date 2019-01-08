@@ -28,6 +28,8 @@ public class WbsgrammarLexerTest {
         return Stream.of(
 Arguments.of("1st level full estimate, multiple addressed",
 ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment"),
+Arguments.of("2nd level full estimate, multiple addressed",
+        ".. | Analyze 2 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment"),
 Arguments.of("1st level full estimate, ONE addressed",
         ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed R-10 //comment"),
 Arguments.of("1st level with keywords inside item description",

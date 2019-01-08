@@ -8,6 +8,7 @@ import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsAvgEstimateContex
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsCommentContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemRefsContext;
+import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemStartContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMaxEstimateContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMinEstimateContext;
 import org.sbelei.architectide.wbsmodel.WBSItem;
@@ -15,8 +16,6 @@ import org.sbelei.architectide.wbsmodel.WBSEstimate;
 
 /**
  * This class responsible for building WBS model from parsed source file
- *
- * TODO: Add labels for tasks to make a reference
  *
  * @author Serhii Belei
  *
@@ -29,8 +28,13 @@ public class WbsParserListener extends WbsgrammarParserBaseListener {
     @Override
     public void enterWbsItem(WbsItemContext ctx) {
         currentItem = new WBSItem();
-        items.add(currentItem);
         super.enterWbsItem(ctx);
+    }
+
+    @Override
+    public void exitWbsItemStart(WbsItemStartContext ctx) {
+        currentItem.setLevel( ctx.DOT().size()-1);
+        super.exitWbsItemStart(ctx);
     }
 
     @Override

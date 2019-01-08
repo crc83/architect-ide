@@ -12,8 +12,8 @@ public class WBSItemTest {
         WBSItem actual = new WBSItem();
         actual.setItemDescription("| Zero level item  |");
         assertAll(
-                () -> assertEquals(0, actual.level),
-                () -> assertEquals("Zero level item", actual.itemDescription),
+                () -> assertEquals(0, actual.getLevel()),
+                () -> assertEquals("Zero level item", actual.getItemDescription()),
                 () -> assertEquals(0, actual.getAvg()));
     }
 
@@ -22,8 +22,8 @@ public class WBSItemTest {
         WBSItem actual = new WBSItem();
         actual.setItemDescription("A");
         assertAll(
-                () -> assertEquals(0, actual.level),
-                () -> assertEquals("", actual.itemDescription),
+                () -> assertEquals(0, actual.getLevel()),
+                () -> assertEquals("", actual.getItemDescription()),
                 () -> assertEquals(0, actual.getAvg()));
     }
 
@@ -32,8 +32,8 @@ public class WBSItemTest {
         WBSItem actual = new WBSItem();
         actual.setItemDescription(null);
         assertAll(
-                () -> assertEquals(0, actual.level),
-                () -> assertEquals("", actual.itemDescription),
+                () -> assertEquals(0, actual.getLevel()),
+                () -> assertEquals("", actual.getItemDescription()),
                 () -> assertEquals(0, actual.getAvg()));
     }
 

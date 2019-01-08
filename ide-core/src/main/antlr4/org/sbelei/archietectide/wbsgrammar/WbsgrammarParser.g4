@@ -18,7 +18,7 @@ wbsItem
     ;
 
 wbsItemStart
-    : DOT WS+?
+    : DOT+ WS+?
     ;
 
 wbsFullEstimate
