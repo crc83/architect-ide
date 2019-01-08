@@ -11,14 +11,12 @@ DOT         : '.';
 LSQBRACE : '[';
 RSQBRACE : ']';
 COMA : ',';
-DAYS : [Dd][Aa][Ys][Ss] | [Dd] ;
-HRS  : [Hh][Oo][Uu][Rr][Ss] | [Hh][Rr][Ss] | [Hh] ;
-EST_SCALE : DAYS | HRS;
+NL : '\r'?'\n';
 fragment DSLASH      : '//'          ;
 fragment PIPE        : '|'           ;
 fragment REFERENCE_CHAR : DIGIT | LETTER | [-_];
 fragment DIGIT : [0-9] ;
-fragment LETTER: [A-Z,a-z];
+fragment LETTER: [a-zA-Z\u0080-\u00FF];
 fragment WS_CHAR: [\t,' '];
 fragment CONTENT_CHAR: DIGIT | LETTER | WS_CHAR;
 WS : WS_CHAR+;
@@ -26,6 +24,9 @@ REFERENCE : LETTER REFERENCE_CHAR+;
 COMMENT : DSLASH CONTENT_CHAR+;
 INT : DIGIT+ ;
 ITEM_DESCRIPTION : PIPE CONTENT_CHAR+ PIPE;
+fragment DAYS : [Dd][Aa][Ys][Ss] | [Dd] ;
+fragment HRS  : [Hh][Oo][Uu][Rr][Ss] | [Hh][Rr][Ss] | [Hh] ;
+EST_SCALE : DAYS | HRS;
 
 // -------------------------
 // Punctuation

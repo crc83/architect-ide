@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.BitSet;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.CharStreams;
@@ -15,20 +16,33 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.tree.ErrorNode;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsContext;
 
 public class WbsgrammarLexerTest {
 
-    //This is what I expect to parse here
-    private static final String WBS_ITEM_UNDER_TEST =
-            ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment";
-//    ". | Analyze 1 existing WBS approach   | estimate 10d min 2d max 20d   addressed R-01		//comment";
+    @SuppressWarnings("unused")
+    private static Stream<Arguments> createWbsItems() {
+        return Stream.of(
+Arguments.of("1st level full estimate, multiple addressed",
+". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment"),
+Arguments.of("2nd level full estimate, multiple addressed",
+        ".. | Analyze 2 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment"),
+Arguments.of("1st level full estimate, ONE addressed",
+        ". | Analyze 1 existing WBS approach   | estimate 5 min 1 max 20 addressed R-10 //comment"),
+Arguments.of("1st level with keywords inside item description",
+". | Analyze addressed items and estimate 1 existing WBS approach   | estimate 5 min 1 max 20 addressed [R-10, C-20] //comment")
+                );
+    }
 
-    @Test
-    void testLexter() throws Exception {
 
-        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(WBS_ITEM_UNDER_TEST));
+    @ParameterizedTest(name="{0}")
+    @MethodSource("createWbsItems")
+    void testLexter(String description, String wbsItemUnderTest) throws Exception {
+
+        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(wbsItemUnderTest));
 
         //Error listener for tests.
         //Aimed just to count all lexer errors
@@ -72,9 +86,10 @@ public class WbsgrammarLexerTest {
 
     }
 
-    @Test
-    void testGrammar() throws Exception {
-        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(WBS_ITEM_UNDER_TEST));
+    @ParameterizedTest(name="{0}")
+    @MethodSource("createWbsItems")
+    void testGrammar(String description, String wbsItemUnderTest) throws Exception {
+        WbsgrammarLexer lexer = new WbsgrammarLexer(CharStreams.fromString(wbsItemUnderTest));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         WbsgrammarParser parser = new WbsgrammarParser(tokens);
         parser.setTrace(true);
