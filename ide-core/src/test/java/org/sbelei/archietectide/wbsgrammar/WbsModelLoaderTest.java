@@ -21,9 +21,9 @@ public class WbsModelLoaderTest {
                 () -> assertEquals(0, actual.getLevel()),
                 () -> assertEquals("Analyze 1 existing WBS approach", actual.getItemDescription()),
                 () -> assertEquals("comment", actual.getComment()),
-                () -> assertEquals(5, actual.getEstimate().getAvg()),
-                () -> assertEquals(1, actual.getEstimate().getMin()),
-                () -> assertEquals(20, actual.getEstimate().getMax()));
+                () -> assertEquals(5, actual.getAvg()),
+                () -> assertEquals(1, actual.getMin()),
+                () -> assertEquals(20, actual.getMax()));
     }
 
     @Test
@@ -38,9 +38,9 @@ public class WbsModelLoaderTest {
                 () -> assertEquals(0, actual.getLevel()),
                 () -> assertEquals("Analyze 1 existing WBS approach", actual.getItemDescription()),
                 () -> assertEquals("", actual.getComment()),
-                () -> assertEquals(5, actual.getEstimate().getAvg()),
-                () -> assertEquals(1, actual.getEstimate().getMin()),
-                () -> assertEquals(20, actual.getEstimate().getMax()));
+                () -> assertEquals(5, actual.getAvg()),
+                () -> assertEquals(1, actual.getMin()),
+                () -> assertEquals(20, actual.getMax()));
     }
 
     @Test
@@ -55,9 +55,9 @@ public class WbsModelLoaderTest {
                 () -> assertEquals(0, actual.getLevel()),
                 () -> assertEquals("Analyze 1 existing WBS approach", actual.getItemDescription()),
                 () -> assertEquals("", actual.getComment()),
-                () -> assertEquals(5, actual.getEstimate().getAvg()),
-                () -> assertEquals(0, actual.getEstimate().getMin()),
-                () -> assertEquals(0, actual.getEstimate().getMax()));
+                () -> assertEquals(5, actual.getAvg()),
+                () -> assertEquals(0, actual.getMin()),
+                () -> assertEquals(0, actual.getMax()));
     }
 
 }

@@ -16,7 +16,7 @@ public class WBSItem {
 
     public int level;
     String itemDescription;
-    WBSFullEstimate estimate;
+    WBSEstimate avg, min, max;
     Map<String, ReqItem> addressReqItems;
     String comment;
     LinkedList<WBSItem> subItems;
@@ -45,18 +45,8 @@ public class WBSItem {
         return itemDescription;
     }
 
-    public WBSFullEstimate getEstimate() {
-        return estimate;
-    }
-
     public void addSubItem(WBSItem item) {
         subItems.add(item);
-    }
-
-    @Override
-    public String toString() {
-        return "WBSItem [level=" + level + ", itemDescription=" + itemDescription + ", estimate=" + estimate
-                + ", address " + addressReqItems.size() + " count , comment=" + comment + "]";
     }
 
     public int getLevel() {
@@ -65,10 +55,6 @@ public class WBSItem {
 
     public void setItemDescription(String description) {
         this.itemDescription = trimDescription(description);
-    }
-
-    public void setEstimate(WBSFullEstimate theEstimate) {
-        estimate =  theEstimate;
     }
 
     public void insertAddressedItem(String itemCode) {
@@ -94,5 +80,38 @@ public class WBSItem {
 
     public String getComment() {
         return comment;
+    }
+
+    public void setAvg(WBSEstimate avg) {
+        this.avg = avg;
+    }
+
+    public void setMax(WBSEstimate max) {
+        this.max = max;
+    }
+
+    public void setMin(WBSEstimate min) {
+        this.min = min;
+    }
+
+    public int getAvg() {
+        if (avg == null) {
+            return 0;
+        }
+        return avg.estimate;
+    }
+
+    public int getMin() {
+        if (min == null) {
+            return 0;
+        }
+        return min.estimate;
+    }
+
+    public int getMax() {
+        if (max == null) {
+            return 0;
+        }
+        return max.estimate;
     }
 }

@@ -10,7 +10,6 @@ import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMaxEstimateContex
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMinEstimateContext;
 import org.sbelei.architectide.wbsmodel.WBSItem;
 import org.sbelei.architectide.wbsmodel.WBSEstimate;
-import org.sbelei.architectide.wbsmodel.WBSFullEstimate;
 
 /**
  * This class responsible for building WBS model from parsed source file
@@ -35,17 +34,17 @@ public class WbsParserListener extends WbsgrammarParserBaseListener {
 
     @Override
         public void exitWbsAvgEstimate(WbsAvgEstimateContext ctx) {
-            WBSFullEstimate estimate = new WBSFullEstimate(
+            WBSEstimate estimate = new WBSEstimate(
                     ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
                     ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText());
-            currentItem.setEstimate(estimate);
+            currentItem.setAvg(estimate);
 
             super.exitWbsAvgEstimate(ctx);
         }
 
     @Override
     public void exitWbsMinEstimate(WbsMinEstimateContext ctx) {
-        currentItem.getEstimate().setMinEstimate(new WBSEstimate(
+        currentItem.setMin(new WBSEstimate(
               ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
               ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()
                 ) );
@@ -54,7 +53,7 @@ public class WbsParserListener extends WbsgrammarParserBaseListener {
 
     @Override
     public void exitWbsMaxEstimate(WbsMaxEstimateContext ctx) {
-        currentItem.getEstimate().setMaxEstimate(new WBSEstimate(
+        currentItem.setMax(new WBSEstimate(
                 ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
                 ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()
                   ) );

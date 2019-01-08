@@ -14,7 +14,7 @@ public class WBSItemTest {
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("Zero level item", actual.itemDescription),
-                () -> assertEquals(null, actual.estimate));
+                () -> assertEquals(0, actual.getAvg()));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class WBSItemTest {
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("", actual.itemDescription),
-                () -> assertEquals(null, actual.estimate));
+                () -> assertEquals(0, actual.getAvg()));
     }
 
     @Test
@@ -34,7 +34,7 @@ public class WBSItemTest {
         assertAll(
                 () -> assertEquals(0, actual.level),
                 () -> assertEquals("", actual.itemDescription),
-                () -> assertEquals(null, actual.estimate));
+                () -> assertEquals(0, actual.getAvg()));
     }
 
 }
