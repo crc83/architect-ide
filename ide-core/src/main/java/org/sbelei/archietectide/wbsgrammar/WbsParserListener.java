@@ -3,9 +3,11 @@ package org.sbelei.archietectide.wbsgrammar;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.antlr.v4.runtime.tree.TerminalNode;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsAvgEstimateContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsCommentContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemContext;
+import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsItemRefsContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMaxEstimateContext;
 import org.sbelei.archietectide.wbsgrammar.WbsgrammarParser.WbsMinEstimateContext;
 import org.sbelei.architectide.wbsmodel.WBSItem;
@@ -14,7 +16,6 @@ import org.sbelei.architectide.wbsmodel.WBSEstimate;
 /**
  * This class responsible for building WBS model from parsed source file
  *
- * TODO: Addressed items
  * TODO: Add labels for tasks to make a reference
  *
  * @author Serhii Belei
@@ -33,37 +34,40 @@ public class WbsParserListener extends WbsgrammarParserBaseListener {
     }
 
     @Override
-        public void exitWbsAvgEstimate(WbsAvgEstimateContext ctx) {
-            WBSEstimate estimate = new WBSEstimate(
-                    ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
-                    ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText());
-            currentItem.setAvg(estimate);
+    public void exitWbsAvgEstimate(WbsAvgEstimateContext ctx) {
+        WBSEstimate estimate = new WBSEstimate(ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
+                ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText());
+        currentItem.setAvg(estimate);
 
-            super.exitWbsAvgEstimate(ctx);
-        }
+        super.exitWbsAvgEstimate(ctx);
+    }
 
     @Override
     public void exitWbsMinEstimate(WbsMinEstimateContext ctx) {
-        currentItem.setMin(new WBSEstimate(
-              ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
-              ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()
-                ) );
+        currentItem.setMin(new WBSEstimate(ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
+                ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()));
         super.exitWbsMinEstimate(ctx);
     }
 
     @Override
     public void exitWbsMaxEstimate(WbsMaxEstimateContext ctx) {
-        currentItem.setMax(new WBSEstimate(
-                ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
-                ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()
-                  ) );
+        currentItem.setMax(new WBSEstimate(ctx.getToken(WbsgrammarLexer.INT, 0).getText(),
+                ctx.getToken(WbsgrammarLexer.EST_SCALE, 0).getText()));
         super.exitWbsMaxEstimate(ctx);
     }
 
     @Override
     public void exitWbsComment(WbsCommentContext ctx) {
-        currentItem.setComment( ctx.getToken(WbsgrammarLexer.COMMENT, 0).getText());
+        currentItem.setComment(ctx.getToken(WbsgrammarLexer.COMMENT, 0).getText());
         super.exitWbsComment(ctx);
+    }
+
+    @Override
+    public void exitWbsItemRefs(WbsItemRefsContext ctx) {
+        for(TerminalNode node : ctx.getTokens(WbsgrammarLexer.REFERENCE)) {
+            currentItem.insertAddressedItem( node.getText());
+        }
+        super.exitWbsItemRefs(ctx);
     }
 
     @Override

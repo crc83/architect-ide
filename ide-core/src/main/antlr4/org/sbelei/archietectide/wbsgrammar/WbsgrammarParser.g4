@@ -38,19 +38,14 @@ wbsMaxEstimate
     ;
 
 wbsAddressed
-    : ADDRESSED wbsItemRef      #addressedOneItem
-    | ADDRESSED wbsItemRefs     #addressedItemList
+    : ADDRESSED wbsItemRefs
     ;
 
 wbsComment
     : COMMENT
     ;
 
-
-wbsItemRef
-    : WS REFERENCE
-    ;
-
 wbsItemRefs
-    : WS? LSQBRACE WS? (REFERENCE WS? COMA)+ WS? REFERENCE RSQBRACE
+    : WS REFERENCE
+    | WS? LSQBRACE WS? (REFERENCE WS? COMA)+ WS? REFERENCE RSQBRACE
     ;
