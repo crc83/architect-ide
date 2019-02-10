@@ -21,7 +21,8 @@ class ProjectWbsParsingTest {
 	@Test
 	def void loadModel() {
 		val result = parseHelper.parse('''
-			Hello Xtext!
+			Estimate
+			.|Analyze| estimate 5 min 1 max 10
 		''')
 		Assertions.assertNotNull(result)
 		val errors = result.eResource.errors
