@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package 
+			uri = "http://www.sbelei.org/archide/ProjectWbs"
+			class = "org.sbelei.archide.projectWbs.ProjectWbsPackage"
+			genModel = "model/generated/ProjectWbs.genmodel" />
+	</extension>
+</plugin>

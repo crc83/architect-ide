@@ -1,0 +1,21 @@
+grammar org.sbelei.archide.ProjectWbs with org.eclipse.xtext.common.Terminals
+
+generate projectWbs "http://www.sbelei.org/archide/ProjectWbs"
+
+Model:
+	Wbs;
+	
+terminal CONTENT : ID;
+
+Wbs:
+	'Estimate' 
+		wbs_items += wbsItem;
+
+	/*
+terminal wbsAddressed:
+	'addressed' addressed_items += itemRefs
+;
+ */
+wbsItem:
+	level = ('.')? '|' description = CONTENT '|' ('estimate' expected=INT ('min' minimum=INT)? ('max' maximum=INT)?)?;// (addressed)? (comment)?;
+	
