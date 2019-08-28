@@ -1,7 +1,25 @@
 
 [![Build Status](https://semaphoreci.com/api/v1/crc83/architect-ide/branches/master/badge.svg)](https://semaphoreci.com/crc83/architect-ide)
 
+# About
 
+Architect Ide The aim of project is to give a tool that support architect in architecture vision preparation.
+This tool should help to check if all risks, concerns and constraints are addressed to specific epics. 
+This tool should support bidirectional sync with JIRA or other task tracking tool. 
+This tool should be highly extensible, so architect may add own rules for validation or outcoming document generation.
+
+# Looks like a plan
+
+What is done and what shall be done
+1. [DONE] Implement ANTLR parser to parse WBS into model
+2. Implement syntax highlite and something like code completition
+3. Implement validation of document, to highlite open issues and risks e.t.c.
+4. Implement export to word/pdf e.t.c. Define plugin API for this.
+5. Implement synchronization strategy with jira e.t.c.
+
+# Licence
+
+Apache 2.0 license 
 
 # Decisions made
 
@@ -52,4 +70,4 @@ Licence: Apache 2.0
 
 After investigation and reading descussion at: https://habr.com/post/243091/
 
-I plan to use Apache 2.0 license 
+
